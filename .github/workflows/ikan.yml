@@ -22,6 +22,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            sudo su
+            rm -rf Github-Action-Host
             git clone https://github.com/excelyno/Github-Action-Host
             cd Github-Action-Host
             docker-compose -f docker-compose.yml up -d
