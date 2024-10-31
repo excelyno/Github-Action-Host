@@ -14,31 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy Using ssh
-        uses: appleboy/ssh-action@master
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.1.0
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-          
-      - name: Update package lists
-        run: sudo apt-get update
-
-      - name: Install Docker
-        run: |
-          curl -fsSL https://get.docker.com | sh
-
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker-compose -y
-
-      - name: Run Docker Compose
-        run: |
-          pwd
-          docker-compose -f $(pwd)/docker-compose.yml up -d
-
-      - name: Check for and fix broken packages
-        run: sudo apt-get install -f
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: whoami
