@@ -25,6 +25,6 @@ jobs:
             sudo su 
             rm -rf Github-Action-Host
             git clone https://github.com/excelyno/Github-Action-Host
+            chmod 777 Github-Action-Host && chmod 777 Github-Action-Host/*
             cd Github-Action-Host
             docker-compose -f docker-compose.yml up -d
-            ./docker.sh
